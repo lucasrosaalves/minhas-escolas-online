@@ -1,8 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
+using MediatR;
+using MEO.Application.ApplicationObjects;
+using MEO.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace MEO.API.Controllers
 {
     [ApiController]
@@ -11,8 +16,42 @@ namespace MEO.API.Controllers
     {
         protected ICollection<string> Erros = new List<string>();
 
-        protected ActionResult CustomResponse(object result = null)
+        private readonly IMediator _mediator;
+
+        protected BaseController(IMediator mediator)
         {
+            _mediator = mediator;
+        }
+
+        protected Task<IActionResult> SendAsync<T>(T command) where T : Command
+            => ExecuteAsync(command);
+
+        protected Task<IActionResult> QueryAsync<T,TOut>(T query) where T : Query<TOut>
+            => ExecuteAsync(query);
+
+        private async Task<IActionResult> ExecuteAsync<T>(T @object)
+        {
+            try
+            {
+                var result = await _mediator.Send(@object);
+
+                return CustomResponse(result);
+            }
+            catch
+            {
+                AdicionarErroProcessamento("Ocorreu um erro inesperado no sistema");
+
+                return CustomResponse();
+            }
+        }
+
+        private ActionResult CustomResponse(object result = null)
+        {
+            if(result is ValidationResult)
+            {
+                return CustomResponse(result as ValidationResult);
+            }
+
             if (OperacaoValida())
             {
                 return Ok(result);
@@ -24,18 +63,7 @@ namespace MEO.API.Controllers
             }));
         }
 
-        protected ActionResult CustomResponse(ModelStateDictionary modelState)
-        {
-            var erros = modelState.Values.SelectMany(e => e.Errors);
-            foreach (var erro in erros)
-            {
-                AdicionarErroProcessamento(erro.ErrorMessage);
-            }
-
-            return CustomResponse();
-        }
-
-        protected ActionResult CustomResponse(ValidationResult validationResult)
+        private ActionResult CustomResponse(ValidationResult validationResult)
         {
             foreach (var erro in validationResult.Errors)
             {
@@ -45,17 +73,17 @@ namespace MEO.API.Controllers
             return CustomResponse();
         }
 
-        protected bool OperacaoValida()
+        private bool OperacaoValida()
         {
             return !Erros.Any();
         }
 
-        protected void AdicionarErroProcessamento(string erro)
+        private void AdicionarErroProcessamento(string erro)
         {
             Erros.Add(erro);
         }
 
-        protected void LimparErrosProcessamento()
+        private void LimparErrosProcessamento()
         {
             Erros.Clear();
         }

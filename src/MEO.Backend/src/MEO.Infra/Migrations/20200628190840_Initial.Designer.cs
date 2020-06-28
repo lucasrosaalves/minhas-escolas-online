@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MEO.Infra.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200628175247_Initial")]
+    [Migration("20200628190840_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,23 +28,25 @@ namespace MEO.Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("EscolaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Site")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Telefone")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EscolaId")
                         .IsUnique();
 
-                    b.ToTable("Contato");
+                    b.ToTable("Contatos");
                 });
 
             modelBuilder.Entity("MEO.Domain.Entities.Endereco", b =>
@@ -54,22 +56,26 @@ namespace MEO.Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Bairro")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Cep")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("Complemento")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<Guid>("EscolaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Logradouro")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Numero")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(14)");
 
                     b.Property<int>("TipoLocalizacaoId")
                         .HasColumnType("int");
@@ -79,7 +85,7 @@ namespace MEO.Infra.Migrations
                     b.HasIndex("EscolaId")
                         .IsUnique();
 
-                    b.ToTable("Endereco");
+                    b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("MEO.Domain.Entities.Escola", b =>
@@ -89,10 +95,12 @@ namespace MEO.Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
@@ -121,7 +129,7 @@ namespace MEO.Infra.Migrations
 
                     b.HasIndex("EscolaId");
 
-                    b.ToTable("Turma");
+                    b.ToTable("Turmas");
                 });
 
             modelBuilder.Entity("MEO.Domain.Entities.Contato", b =>

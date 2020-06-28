@@ -63,6 +63,16 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
+      "MEO.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MEO.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MEO.Common.dll": {}
+        }
+      },
       "MEO.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -251,6 +261,11 @@
         "version.txt"
       ]
     },
+    "MEO.Common/1.0.0": {
+      "type": "project",
+      "path": "../MEO.Common/MEO.Common.csproj",
+      "msbuildProject": "../MEO.Common/MEO.Common.csproj"
+    },
     "MEO.Domain/1.0.0": {
       "type": "project",
       "path": "../MEO.Domain/MEO.Domain.csproj",
@@ -260,6 +275,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "FluentValidation >= 8.6.2",
+      "MEO.Common >= 1.0.0",
       "MEO.Domain >= 1.0.0",
       "MediatR.Extensions.Microsoft.DependencyInjection >= 8.0.0",
       "Newtonsoft.Json >= 12.0.3"
@@ -297,6 +313,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+            "C:\\Projetos\\Pessoal\\minhas-escolas-online\\src\\MEO.Backend\\src\\MEO.Common\\MEO.Common.csproj": {
+              "projectPath": "C:\\Projetos\\Pessoal\\minhas-escolas-online\\src\\MEO.Backend\\src\\MEO.Common\\MEO.Common.csproj"
+            },
             "C:\\Projetos\\Pessoal\\minhas-escolas-online\\src\\MEO.Backend\\src\\MEO.Domain\\MEO.Domain.csproj": {
               "projectPath": "C:\\Projetos\\Pessoal\\minhas-escolas-online\\src\\MEO.Backend\\src\\MEO.Domain\\MEO.Domain.csproj"
             }

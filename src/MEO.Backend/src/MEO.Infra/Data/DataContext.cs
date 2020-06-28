@@ -14,7 +14,13 @@ namespace MEO.Infra.Data
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
+        }
+
         public DbSet<Escola> Escolas { get; set; }
+        public DbSet<Turma> Turmas { get; set; }
 
         public async Task<bool> CommitAsync()
         {

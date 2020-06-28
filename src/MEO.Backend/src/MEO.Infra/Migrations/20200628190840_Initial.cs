@@ -12,8 +12,8 @@ namespace MEO.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Nome = table.Column<string>(nullable: true),
-                    Codigo = table.Column<string>(nullable: true)
+                    Nome = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Codigo = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -21,20 +21,20 @@ namespace MEO.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contato",
+                name: "Contatos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Telefone = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Site = table.Column<string>(nullable: true),
+                    Telefone = table.Column<string>(type: "varchar(20)", nullable: false),
+                    Email = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Site = table.Column<string>(type: "varchar(100)", nullable: true),
                     EscolaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contato", x => x.Id);
+                    table.PrimaryKey("PK_Contatos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contato_Escolas_EscolaId",
+                        name: "FK_Contatos_Escolas_EscolaId",
                         column: x => x.EscolaId,
                         principalTable: "Escolas",
                         principalColumn: "Id",
@@ -42,23 +42,23 @@ namespace MEO.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Endereco",
+                name: "Enderecos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Logradouro = table.Column<string>(nullable: true),
-                    Numero = table.Column<string>(nullable: true),
-                    Complemento = table.Column<string>(nullable: true),
-                    Bairro = table.Column<string>(nullable: true),
-                    Cep = table.Column<string>(nullable: true),
-                    TipoLocalizacaoId = table.Column<int>(nullable: false),
+                    Logradouro = table.Column<string>(type: "varchar(150)", nullable: false),
+                    Numero = table.Column<string>(type: "varchar(14)", nullable: false),
+                    Complemento = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Bairro = table.Column<string>(type: "varchar(50)", nullable: false),
+                    Cep = table.Column<string>(type: "varchar(20)", nullable: false),
+                    TipoLocalizacaoId = table.Column<int>(type: "int", nullable: false),
                     EscolaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Endereco", x => x.Id);
+                    table.PrimaryKey("PK_Enderecos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Endereco_Escolas_EscolaId",
+                        name: "FK_Enderecos_Escolas_EscolaId",
                         column: x => x.EscolaId,
                         principalTable: "Escolas",
                         principalColumn: "Id",
@@ -66,20 +66,20 @@ namespace MEO.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Turma",
+                name: "Turmas",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Codigo = table.Column<string>(nullable: true),
-                    TipoTurnoId = table.Column<int>(nullable: false),
-                    QuantidadeAlunos = table.Column<int>(nullable: false),
+                    TipoTurnoId = table.Column<int>(type: "int", nullable: false),
+                    QuantidadeAlunos = table.Column<int>(type: "int", nullable: false),
                     EscolaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Turma", x => x.Id);
+                    table.PrimaryKey("PK_Turmas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Turma_Escolas_EscolaId",
+                        name: "FK_Turmas_Escolas_EscolaId",
                         column: x => x.EscolaId,
                         principalTable: "Escolas",
                         principalColumn: "Id",
@@ -87,33 +87,33 @@ namespace MEO.Infra.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contato_EscolaId",
-                table: "Contato",
+                name: "IX_Contatos_EscolaId",
+                table: "Contatos",
                 column: "EscolaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Endereco_EscolaId",
-                table: "Endereco",
+                name: "IX_Enderecos_EscolaId",
+                table: "Enderecos",
                 column: "EscolaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Turma_EscolaId",
-                table: "Turma",
+                name: "IX_Turmas_EscolaId",
+                table: "Turmas",
                 column: "EscolaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Contato");
+                name: "Contatos");
 
             migrationBuilder.DropTable(
-                name: "Endereco");
+                name: "Enderecos");
 
             migrationBuilder.DropTable(
-                name: "Turma");
+                name: "Turmas");
 
             migrationBuilder.DropTable(
                 name: "Escolas");

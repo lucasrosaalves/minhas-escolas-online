@@ -2,6 +2,7 @@
 using MEO.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MEO.Domain.Entities
@@ -40,6 +41,16 @@ namespace MEO.Domain.Entities
             if (_turmas is null)
             {
                 _turmas = new List<Turma>();
+            }
+
+            if(turma.EscolaId != Id)
+            {
+                throw new DomainException("A turma informada é inválida");
+            }
+
+            if(_turmas.Any(p=> p.Codigo == turma.Codigo))
+            {
+                throw new DomainException("A turma informada já está cadastrada");
             }
 
             _turmas.Add(turma);

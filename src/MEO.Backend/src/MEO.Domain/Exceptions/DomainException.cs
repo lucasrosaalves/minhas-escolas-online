@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MEO.Domain.Exceptions
 {
-    public class DomainException : Exception
+    public class DomainException : InvalidOperationException
     {
         public DomainException(string message)
             : base(message)

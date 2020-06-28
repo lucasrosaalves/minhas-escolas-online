@@ -9,6 +9,7 @@
       "MEO.Application/1.0.0": {
         "dependencies": {
           "FluentValidation": "8.6.2",
+          "MEO.Common": "1.0.0",
           "MEO.Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "8.0.0",
           "Newtonsoft.Json": "12.0.3"
@@ -65,6 +66,11 @@
         }
       },
       "System.ComponentModel.Annotations/4.4.1": {},
+      "MEO.Common/1.0.0": {
+        "runtime": {
+          "MEO.Common.dll": {}
+        }
+      },
       "MEO.Domain/1.0.0": {
         "runtime": {
           "MEO.Domain.dll": {}
@@ -119,6 +125,11 @@
       "sha512": "sha512-ToiYqSCioqhtspq2O/jYKtyTC/T0uwWHBTYlzCi6PRbSSHArN1IaRWeHffDamvms5sye5FDUWCfNZgubQpNRsA==",
       "path": "system.componentmodel.annotations/4.4.1",
       "hashPath": "system.componentmodel.annotations.4.4.1.nupkg.sha512"
+    },
+    "MEO.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "MEO.Domain/1.0.0": {
       "type": "project",

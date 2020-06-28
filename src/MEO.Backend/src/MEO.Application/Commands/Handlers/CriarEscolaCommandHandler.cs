@@ -1,8 +1,8 @@
 ﻿using FluentValidation.Results;
 using MediatR;
 using MEO.Application.ApplicationObjects;
-using MEO.Domain.Exceptions;
-using System;
+using MEO.Domain.Entities;
+using MEO.Domain.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,28 +10,46 @@ namespace MEO.Application.Commands.Handlers
 {
     public class CriarEscolaCommandHandler : CommandHandler, IRequestHandler<CriarEscolaCommand, ValidationResult>
     {
-        public Task<ValidationResult> Handle(CriarEscolaCommand request, CancellationToken cancellationToken)
+        private readonly IEscolaRepository _escolaRepository;
+
+        public CriarEscolaCommandHandler(IEscolaRepository escolaRepository)
         {
-            try
-            {
-                if (!request.IsValid())
-                {
-                    return Task.FromResult(request.ValidationResult);
+            _escolaRepository = escolaRepository;
+        }
 
-                }
-
-                return Task.FromResult(new ValidationResult());
-            }
-            catch (DomainException ex)
+        public async Task<ValidationResult> Handle(CriarEscolaCommand request, CancellationToken cancellationToken)
+        {
+            if (!request.IsValid())
             {
-                AddErro(ex.Message);
-                return Task.FromResult(ValidationResult);
+                return request.ValidationResult;
             }
-            catch (Exception)
+
+            var escolaBanco = await _escolaRepository.ObterEscolaPorCodigoAsync(request.Codigo);
+
+            if(!(escolaBanco is null))
+            {
+                AddErro("Escola já cadastrada");
+
+                return ValidationResult;
+            }
+
+            var endereco = new Endereco(request.Logradouro,
+                request.Numero, request.Complemento, request.Bairro, request.Cep, request.TipoLocalizacaoId);
+
+            var contato = new Contato(request.Telefone, request.Email, request.Site);
+
+            var escola = new Escola(request.Nome, request.Codigo, endereco, contato);
+
+            await _escolaRepository.AdicionarAsync(escola);
+
+            var result = await _escolaRepository.UnitOfWork.CommitAsync();
+
+            if (!result)
             {
                 AddErro("Ocorreu um erro inesperado no sistema");
-                return Task.FromResult(ValidationResult);
             }
+
+            return ValidationResult;
 
         }
     }

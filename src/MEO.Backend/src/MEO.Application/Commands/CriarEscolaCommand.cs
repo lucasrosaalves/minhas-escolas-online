@@ -1,5 +1,9 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using MEO.Application.ApplicationObjects;
+using MEO.Domain.DomainObjects;
+using MEO.Domain.Enums;
+using System.Linq;
 
 namespace MEO.Application.Commands
 {
@@ -47,9 +51,13 @@ namespace MEO.Application.Commands
                     .NotEmpty()
                     .WithMessage("O cep deve ser informado");
 
+
+                var tiposLocalizacao = Enumeration.ObterTodos<TipoLocalizacao>().Select(p=> p.Id);
+
                 RuleFor(c => c.TipoLocalizacaoId)
-                    .NotEqual(0)
-                    .WithMessage("O tipo de localização deve ser informado");
+                    .InclusiveBetween(tiposLocalizacao.Min(), tiposLocalizacao.Max())
+                    .WithMessage("Tipo de localização inválido");
+
 
                 RuleFor(c => c.Telefone)
                     .NotEmpty()

@@ -11,6 +11,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\MEO.Common\MEO.Common.csproj" />
     <ProjectReference Include="..\MEO.Domain\MEO.Domain.csproj" />
   </ItemGroup> 
   

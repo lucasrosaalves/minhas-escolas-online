@@ -2224,6 +2224,7 @@
       "MEO.Application/1.0.0": {
         "dependencies": {
           "FluentValidation": "8.6.2",
+          "MEO.Common": "1.0.0",
           "MEO.Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "8.0.0",
           "Newtonsoft.Json": "12.0.3"
@@ -2233,6 +2234,14 @@
         },
         "compile": {
           "MEO.Application.dll": {}
+        }
+      },
+      "MEO.Common/1.0.0": {
+        "runtime": {
+          "MEO.Common.dll": {}
+        },
+        "compile": {
+          "MEO.Common.dll": {}
         }
       },
       "MEO.Domain/1.0.0": {
@@ -5015,6 +5024,11 @@
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
     "MEO.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MEO.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

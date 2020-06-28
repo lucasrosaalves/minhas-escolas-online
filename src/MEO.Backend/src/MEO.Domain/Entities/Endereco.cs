@@ -1,5 +1,8 @@
 ﻿using MEO.Domain.DomainObjects;
+using MEO.Domain.Enums;
+using MEO.Domain.Exceptions;
 using System;
+using System.Linq;
 
 namespace MEO.Domain.Entities
 {
@@ -20,13 +23,35 @@ namespace MEO.Domain.Entities
             string numero,
             string complemento,
             string bairro,
-            string cep)
+            string cep,
+            int tipoLocalizacaoId)
         {
+            if (string.IsNullOrWhiteSpace(logradouro))
+            {
+                throw new DomainException("O logradouro deve ser informado");
+            }
+            if (string.IsNullOrWhiteSpace(bairro))
+            {
+                throw new DomainException("O bairro deve ser informado");
+            }
+            if (string.IsNullOrWhiteSpace(cep))
+            {
+                throw new DomainException("O cep deve ser informado");
+            }
+
+            var tiposLocalizacao = Enumeration.ObterTodos<TipoLocalizacao>().Select(p => p.Id);
+
+            if (!tiposLocalizacao.Contains(tipoLocalizacaoId))
+            {
+                throw new DomainException("Tipo de localização inválida");
+            }
+
             Logradouro = logradouro;
             Numero = numero;
             Complemento = complemento;
             Bairro = bairro;
             Cep = cep;
+            TipoLocalizacaoId = tipoLocalizacaoId;
         }
     }
 }

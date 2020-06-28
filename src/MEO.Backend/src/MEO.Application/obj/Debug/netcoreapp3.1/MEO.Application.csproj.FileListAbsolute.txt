@@ -9,3 +9,5 @@ C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bi
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.csproj.CopyComplete
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.dll
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.pdb
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Common.dll
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Common.pdb

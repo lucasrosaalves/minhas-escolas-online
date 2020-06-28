@@ -1,4 +1,5 @@
 ﻿using MEO.Domain.DomainObjects;
+using MEO.Domain.Exceptions;
 using System;
 
 namespace MEO.Domain.Entities
@@ -16,6 +17,15 @@ namespace MEO.Domain.Entities
 
         public Contato(string telefone, string email, string site)
         {
+            if (string.IsNullOrWhiteSpace(telefone))
+            {
+                throw new DomainException("O telefone de contato deve ser informado");
+            }
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new DomainException("O email de contato deve ser informado");
+            }
+
             Telefone = telefone;
             Email = email;
             Site = site;

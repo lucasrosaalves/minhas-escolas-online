@@ -2618,6 +2618,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "FluentValidation": "8.6.2",
+          "MEO.Common": "1.0.0",
           "MEO.Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "8.0.0",
           "Newtonsoft.Json": "12.0.3"
@@ -2627,6 +2628,16 @@
         },
         "runtime": {
           "bin/placeholder/MEO.Application.dll": {}
+        }
+      },
+      "MEO.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MEO.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MEO.Common.dll": {}
         }
       },
       "MEO.Domain/1.0.0": {
@@ -8497,6 +8508,11 @@
       "type": "project",
       "path": "../MEO.Application/MEO.Application.csproj",
       "msbuildProject": "../MEO.Application/MEO.Application.csproj"
+    },
+    "MEO.Common/1.0.0": {
+      "type": "project",
+      "path": "../MEO.Common/MEO.Common.csproj",
+      "msbuildProject": "../MEO.Common/MEO.Common.csproj"
     },
     "MEO.Domain/1.0.0": {
       "type": "project",

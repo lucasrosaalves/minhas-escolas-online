@@ -136,3 +136,6 @@ C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\obj\Debug\
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\obj\Debug\netcoreapp3.1\MEO.API.csproj.CopyComplete
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\obj\Debug\netcoreapp3.1\MEO.API.dll
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\obj\Debug\netcoreapp3.1\MEO.API.pdb
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\obj\Debug\netcoreapp3.1\MEO.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\bin\Debug\netcoreapp3.1\MEO.Common.dll
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.API\bin\Debug\netcoreapp3.1\MEO.Common.pdb

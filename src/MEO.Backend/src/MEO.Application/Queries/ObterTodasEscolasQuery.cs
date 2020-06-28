@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MEO.Domain.Entities;
+﻿using MEO.Application.ApplicationObjects;
+using MEO.Application.DTOs;
 using System.Collections.Generic;
 
 namespace MEO.Application.Queries
 {
-    public class ObterTodasEscolasQuery : IRequest<List<Escola>>
+    public class ObterTodasEscolasQuery : Query<List<EscolaDTO>>
     {
     }
 }

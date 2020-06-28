@@ -43,8 +43,15 @@ namespace MEO.Domain.DomainObjects
 
         public static T FromValue<T>(int value) where T : Enumeration
         {
-            var matchingItem = Parse<T, int>(value, "value", item => item.Id == value);
-            return matchingItem;
+            try
+            {
+                var matchingItem = Parse<T, int>(value, "value", item => item.Id == value);
+                return matchingItem;
+            }
+            catch
+            {
+                throw new InvalidCastException($"Erro ao converter o valor {value} para o tipo {nameof(T) } ");
+            }
         }
 
         public static T FromDisplayName<T>(string displayName) where T : Enumeration
@@ -59,7 +66,7 @@ namespace MEO.Domain.DomainObjects
 
             if (matchingItem is null)
             {
-                throw new InvalidOperationException($"'{value}' não é válido {description} para o tipo {typeof(T)}");
+                throw new InvalidOperationException($"O valor '{value}' não é válido para o tipo {typeof(T)}");
             }
 
             return matchingItem;
