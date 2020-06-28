@@ -5,3 +5,4 @@ C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\bin\Deb
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\bin\Debug\netcoreapp3.1\MEO.Domain.pdb
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.dll
 C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.pdb
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.csprojAssemblyReference.cache

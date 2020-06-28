@@ -8,9 +8,9 @@ namespace MEO.Domain.Repositories
 {
     public interface IEscolaRepository : IRepository<Escola>
     {
-        Task<List<Escola>> ObterTodasAsync();
-        Task<Escola> ObterEscolaPorIdAsync(Guid escolaId, bool obterTurmas = false);
-        Task<Escola> ObterEscolaPorCodigoAsync(string codigo, bool obterTurmas = false);
+        Task<List<Escola>> ObterEscolasPaginadas(int pagina, int tamanhoPagina, bool incluirTurmas = false);
+        Task<Escola> ObterEscolaPorIdAsync(Guid escolaId, bool incluirTurmas = false);
+        Task<Escola> ObterEscolaPorCodigoAsync(string codigo, bool incluirTurmas = false);
         Task AdicionarAsync(Escola escola);
         Task AtualizarAsync(Escola escola);
         Task AdicionarAsync(Turma turma);

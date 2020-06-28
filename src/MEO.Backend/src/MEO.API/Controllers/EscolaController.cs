@@ -23,8 +23,13 @@ namespace MEO.API.Controllers
         public Task<IActionResult> CriarTurma([FromBody] CriarTurmaCommand command)
             => SendAsync(command);
 
-        [HttpPost("obtertodasescolas")]
-        public Task<IActionResult> ObterTodasEscolas()
-            => QueryAsync<ObterTodasEscolasQuery, List<EscolaDTO>>(new ObterTodasEscolasQuery());
+        [HttpGet("obterescolaspaginadas")]
+        public Task<IActionResult> ObterEscolasPaginadas([FromQuery] ObterEscolasPaginadasQuery query)
+            => QueryAsync<ObterEscolasPaginadasQuery, List<EscolaDTO>>(query);
+
+        [HttpGet("obterescolaporid")]
+        public Task<IActionResult> ObterEscolaPorId([FromQuery] ObterEscolaPorIdQuery query)
+            => QueryAsync<ObterEscolaPorIdQuery, EscolaDTO>(query);
+
     }
 }

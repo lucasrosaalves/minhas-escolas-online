@@ -5,6 +5,7 @@ using MEO.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MEO.Infra.Repositories
@@ -18,12 +19,7 @@ namespace MEO.Infra.Repositories
             _context = context;
         }
 
-        public Task<List<Escola>> ObterTodasAsync()
-        {
-            return _context.Escolas.ToListAsync();
-        }
-
-        public Task<Escola> ObterEscolaPorIdAsync(Guid escolaId, bool obterTurmas = false)
+        public Task<List<Escola>> ObterEscolasPaginadas(int pagina, int tamanhoPagina, bool incluirTurmas = false)
         {
             var context = _context.Escolas
                  .AsQueryable()
@@ -31,7 +27,23 @@ namespace MEO.Infra.Repositories
                 .Include(p => p.Contato)
                 .Include(p => p.Turmas);
 
-            if (obterTurmas)
+            if (incluirTurmas)
+            {
+                context.Include(p => p.Turmas);
+            }
+
+            return context.Skip((pagina - 1) * tamanhoPagina).Take(tamanhoPagina).ToListAsync();
+        }
+
+        public Task<Escola> ObterEscolaPorIdAsync(Guid escolaId, bool incluirTurmas = false)
+        {
+            var context = _context.Escolas
+                 .AsQueryable()
+                .Include(p => p.Endereco)
+                .Include(p => p.Contato)
+                .Include(p => p.Turmas);
+
+            if (incluirTurmas)
             {
                 context.Include(p => p.Turmas);
             }
@@ -39,14 +51,14 @@ namespace MEO.Infra.Repositories
             return context.FirstOrDefaultAsync(e => e.Id == escolaId);
         }
 
-        public Task<Escola> ObterEscolaPorCodigoAsync(string codigo, bool obterTurmas = false)
+        public Task<Escola> ObterEscolaPorCodigoAsync(string codigo, bool incluirTurmas = false)
         {
             var context = _context.Escolas
                 .AsQueryable()
                 .Include(p => p.Endereco)
                 .Include(p => p.Contato);
 
-            if (obterTurmas)
+            if (incluirTurmas)
             {
                 context.Include(p => p.Turmas);
             }
