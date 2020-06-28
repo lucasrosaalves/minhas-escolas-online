@@ -1,0 +1,11 @@
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.csprojAssemblyReference.cache
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.AssemblyInfoInputs.cache
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.AssemblyInfo.cs
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Application.deps.json
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Application.dll
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Application.pdb
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Domain.dll
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\bin\Debug\netcoreapp3.1\MEO.Domain.pdb
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.csproj.CopyComplete
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.dll
+C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Application\obj\Debug\netcoreapp3.1\MEO.Application.pdb
