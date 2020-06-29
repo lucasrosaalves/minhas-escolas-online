@@ -33,7 +33,9 @@ namespace MEO.Application.Commands
             {
                 RuleFor(c => c.Nome)
                     .NotEmpty()
-                    .WithMessage("O nome deve ser informado");
+                    .WithMessage("O nome deve ser informado")
+                    .MaximumLength(100)
+                    .WithMessage("O nome deve possuir até 100 caracteres");
 
                 RuleFor(c => c.Codigo)
                     .NotEmpty()
@@ -52,7 +54,7 @@ namespace MEO.Application.Commands
                     .WithMessage("O cep deve ser informado");
 
 
-                var tiposLocalizacao = Enumeration.ObterTodos<TipoLocalizacao>().Select(p=> p.Id);
+                var tiposLocalizacao = Enumeration.ObterTodos<TipoLocalizacao>().Select(p => p.Id);
 
                 RuleFor(c => c.TipoLocalizacaoId)
                     .InclusiveBetween(tiposLocalizacao.Min(), tiposLocalizacao.Max())
@@ -65,7 +67,10 @@ namespace MEO.Application.Commands
 
                 RuleFor(c => c.Email)
                     .NotEmpty()
-                    .WithMessage("O email deve ser informado");
+                    .WithMessage("O email deve ser informado")
+                    .EmailAddress()
+                    .WithMessage("O email está inválido");
+
             }
 
         }

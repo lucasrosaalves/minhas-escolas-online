@@ -1,5 +1,14 @@
-<h5>Escolas</h5>
-<div class="row">
+<div class="row" *ngIf="!escolas || escolas.length === 0">
+  <div class="col-12 my-2">
+    <ngb-alert type="info" class="my-3" *ngIf="!closeAlert" (close)="closeAlert = true">
+      Nenhuma escola cadastrada até o momento. Acesse o menu superior para realizar o cadastro.
+    </ngb-alert>
+  </div>
+</div>
+<div class="row" *ngIf="escolas && escolas.length > 0">
+  <div class="col-12 my-2">
+    <h5>Escolas</h5>
+  </div>
   <div class="col-12 col-md-3 my-2" *ngFor="let escola of escolas">
     <div class="card h-100">
       <div class="card-body">

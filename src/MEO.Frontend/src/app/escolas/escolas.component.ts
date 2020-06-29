@@ -10,20 +10,25 @@ import { RouterService } from '../core/services/router.service';
 })
 export class EscolasComponent implements OnInit {
   escolas: EscolaModel[] = []
+  closeAlert: boolean = false;
   constructor(
     private escolaService: EscolaService,
     private routerService: RouterService) { }
 
   ngOnInit() {
-    this.escolaService.obterEscolasPaginadas().subscribe(data => {
-      this.escolas = data;
-    }, err => {
-      this.routerService.home();
-    })
+    this.obterEscolasPaginadas();
   }
 
   selecionar(escola : EscolaModel){
     this.routerService.escolaDetalhes(escola.codigo);
+  }
+
+  obterEscolasPaginadas(){
+    this.escolaService.obterEscolasPaginadas().subscribe(data => {
+      this.escolas = data;
+    }, err => {
+      this.escolas = [];
+    });  
   }
 
 }

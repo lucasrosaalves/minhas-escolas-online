@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EscolaService } from 'src/app/core/services/escola.service';
 import { TipoLocalizacaoModel } from 'src/app/shared/models/tipo-localizacao.model';
 import { CriarEscolaModel } from 'src/app/shared/models/criar-escola.model';
@@ -14,8 +14,9 @@ export class CriarEscolaComponent implements OnInit {
   possuiNotificacoes: boolean;
   notificacao: string;
   formSubmited: boolean;
-  tiposLocalizacao: TipoLocalizacaoModel[] = [];
   formEscola: FormGroup;
+  tiposLocalizacao: TipoLocalizacaoModel[] = [];
+
 
   constructor(
     private escolaService: EscolaService,
@@ -31,6 +32,7 @@ export class CriarEscolaComponent implements OnInit {
 
   submit(form: FormGroup) {
     this.formSubmited = true;
+    debugger;
     if (form.invalid) { return; }
 
     let model = this.criarEscolaModel(form);
@@ -79,17 +81,17 @@ export class CriarEscolaComponent implements OnInit {
 
   createForm() {
     this.formEscola = this.formBuilder.group({
-      bairro: [null, Validators.required],
-      cep: [null, Validators.required],
-      codigo: [null, Validators.required],
-      complemento: [null],
-      email: [null, Validators.required],
-      logradouro: [null, Validators.required],
-      nome: [null, Validators.required],
-      numero: [null, Validators.required],
-      site: [null],
-      telefone: [null, Validators.required],
-      tipoLocalizacaoId: [null, Validators.required]
+      bairro: [null, [Validators.required, Validators.maxLength(50)]],
+      cep: [null, [Validators.required, Validators.maxLength(20)]],
+      codigo: [null, [Validators.required, Validators.maxLength(50)]],
+      complemento: [null, [Validators.maxLength(100)]],
+      email: [null, [Validators.required, Validators.email, Validators.maxLength(100)]],
+      logradouro: [null, [Validators.required, Validators.maxLength(150)]],
+      nome: [null, [Validators.required, Validators.maxLength(100)]],
+      numero: [null, [Validators.required, Validators.maxLength(14)]],
+      site: [null, [Validators.maxLength(100)]],
+      telefone: [null, [Validators.required, Validators.maxLength(20)]],
+      tipoLocalizacaoId: [null, [Validators.required]]
     });
   }
 
