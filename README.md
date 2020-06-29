@@ -13,4 +13,6 @@
 
 * Acessar a o diretório scripts e executar ddl_database.sql
 
-* Abrir o Browser de sua preferência e acessar a url http://localhost:4200/
+* Abrir o Browser de sua preferência e acessar a url http://localhost:4200/ para acessar o sistema
+
+* Para acessar a documentação da API, acesse a url http://localhost:5000/swagger
