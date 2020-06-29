@@ -45,9 +45,9 @@ namespace MEO.API.Controllers
             }
         }
 
-        private ActionResult CustomResponse(object result = null)
+        private IActionResult CustomResponse(object result = null)
         {
-            if(result is ValidationResult)
+            if (!(result is null) && result is ValidationResult)
             {
                 return CustomResponse(result as ValidationResult);
             }
@@ -57,13 +57,14 @@ namespace MEO.API.Controllers
                 return Ok(result);
             }
 
+
             return BadRequest(new ValidationProblemDetails(new Dictionary<string, string[]>
             {
                 { "Mensagens", Erros.ToArray() }
             }));
         }
 
-        private ActionResult CustomResponse(ValidationResult validationResult)
+        private IActionResult CustomResponse(ValidationResult validationResult)
         {
             foreach (var erro in validationResult.Errors)
             {

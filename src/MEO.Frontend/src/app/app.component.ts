@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UiService } from './core/services/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'minha-escola-online';
+  private subscriptions : Subscription[] = [];
+
+  title: string = 'Minha escola online';
+  loading: boolean;
+
+  constructor(private uiService: UiService) {
+  }
+
+  ngOnInit() {
+    this.subscribe();
+    this.uiService.setLoading(true);
+    setTimeout(() => { 
+      this.uiService.setLoading(false);
+    }, 1500)
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  subscribe(){
+    this.subscriptions.push(this.uiService.getLoading().subscribe(data =>  this.loading = data));
+  }
 }

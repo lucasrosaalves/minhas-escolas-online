@@ -19,52 +19,45 @@ namespace MEO.Infra.Repositories
             _context = context;
         }
 
+        public IUnitOfWork UnitOfWork => _context;
+
+        #region Leitura
+
         public Task<List<Escola>> ObterEscolasPaginadas(int pagina, int tamanhoPagina, bool incluirTurmas = false)
         {
-            var context = _context.Escolas
-                 .AsQueryable()
-                .Include(p => p.Endereco)
-                .Include(p => p.Contato)
-                .Include(p => p.Turmas);
-
-            if (incluirTurmas)
-            {
-                context.Include(p => p.Turmas);
-            }
-
-            return context.Skip((pagina - 1) * tamanhoPagina).Take(tamanhoPagina).ToListAsync();
+            return ObterQueryableEscola(incluirTurmas)
+                .OrderBy(e => e.Nome)
+                .Skip((pagina - 1) * tamanhoPagina).Take(tamanhoPagina)
+                .ToListAsync();
         }
 
         public Task<Escola> ObterEscolaPorIdAsync(Guid escolaId, bool incluirTurmas = false)
+            => ObterQueryableEscola(incluirTurmas).FirstOrDefaultAsync(e => e.Id == escolaId);
+
+        public Task<Escola> ObterEscolaPorCodigoAsync(string codigo, bool incluirTurmas = false)
+            => ObterQueryableEscola(incluirTurmas).FirstOrDefaultAsync(e => e.Codigo == codigo);
+
+        private IQueryable<Escola> ObterQueryableEscola(bool incluirTurmas)
         {
-            var context = _context.Escolas
-                 .AsQueryable()
-                .Include(p => p.Endereco)
-                .Include(p => p.Contato)
-                .Include(p => p.Turmas);
 
             if (incluirTurmas)
             {
-                context.Include(p => p.Turmas);
+               return _context.Escolas
+                    .AsQueryable()
+                    .Include(p => p.Endereco)
+                    .Include(p => p.Contato)
+                    .Include(p => p.Turmas);
             }
 
-            return context.FirstOrDefaultAsync(e => e.Id == escolaId);
-        }
-
-        public Task<Escola> ObterEscolaPorCodigoAsync(string codigo, bool incluirTurmas = false)
-        {
-            var context = _context.Escolas
+            return _context.Escolas
                 .AsQueryable()
                 .Include(p => p.Endereco)
                 .Include(p => p.Contato);
-
-            if (incluirTurmas)
-            {
-                context.Include(p => p.Turmas);
-            }
-
-            return context.FirstOrDefaultAsync(e => e.Codigo == codigo);
         }
+
+        #endregion
+
+        #region Escrita
 
         public Task AdicionarAsync(Escola escola)
         {
@@ -87,6 +80,7 @@ namespace MEO.Infra.Repositories
 
             return Task.CompletedTask;
         }
+
         public Task AtualizarAsync(Turma turma)
         {
             _context.Entry(turma).State = EntityState.Modified;
@@ -95,6 +89,7 @@ namespace MEO.Infra.Repositories
             return Task.CompletedTask;
         }
 
-        public IUnitOfWork UnitOfWork => _context;
+        #endregion
+
     }
 }
