@@ -13,4 +13,10 @@
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\" />
+    <Folder Include="Common\" />
+    <Folder Include="Domain\Entities\" />
+  </ItemGroup>
+
 </Project>

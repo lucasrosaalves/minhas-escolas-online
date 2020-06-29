@@ -25,6 +25,10 @@ namespace MEO.API.Controllers
         public Task<IActionResult> ObterEscolaPorId([FromQuery] ObterEscolaPorIdQuery query)
             => QueryAsync<ObterEscolaPorIdQuery, EscolaDTO>(query);
 
+        [HttpGet("obterescolaporcodigo")]
+        public Task<IActionResult> ObterEscolaPorId([FromQuery] ObterEscolaPorCodigoQuery query)
+            => QueryAsync<ObterEscolaPorCodigoQuery, EscolaDTO>(query);
+
         #endregion
 
         #region Escrita

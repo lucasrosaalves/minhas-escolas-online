@@ -11,7 +11,7 @@ import { TipoTurnoModel } from 'src/app/shared/models/tipo-turno.model';
   providedIn: 'root'
 })
 export class EscolaService {
-  private tamanhoPagina: number = 20;
+  private tamanhoPagina: number = 50;
   constructor(private httpClient: HttpClient) { }
 
   public obterEscolasPaginadas(pagina: number = 1) {
@@ -27,6 +27,13 @@ export class EscolaService {
     params = params.append('id', id);
 
     return this.httpClient.get<EscolaModel>(endpoints.escola.obterEscolaPorId, { params: params });
+  }
+
+  public obterEscolaPorCodigo(codigo: string) {
+    let params = new HttpParams();
+    params = params.append('codigo', codigo);
+
+    return this.httpClient.get<EscolaModel>(endpoints.escola.obterEscolaPorCodigo, { params: params });
   }
 
   public criarEscola(criarEscola: CriarEscolaModel) {

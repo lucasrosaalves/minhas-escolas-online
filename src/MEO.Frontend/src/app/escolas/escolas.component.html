@@ -1,11 +1,14 @@
+<h5>Escolas</h5>
 <div class="row">
-  <div class="col-12 col-md-3" *ngFor="let escola of escolas">
-    <div class="card">
+  <div class="col-12 col-md-3 my-2" *ngFor="let escola of escolas">
+    <div class="card h-100">
       <div class="card-body">
         <h5 class="card-title">{{escola.nome}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">Código: {{escola.codigo}}</h6>
         <p class="card-text">{{escola.endereco.enderecoCompleto}}</p>
-        <a href="#" class="card-link">Ver Detalhes</a>
+        <button class="btn btn-primary" (click)="selecionar(escola)">
+          Ver Detalhes
+        </button>
       </div>
     </div>
   </div>

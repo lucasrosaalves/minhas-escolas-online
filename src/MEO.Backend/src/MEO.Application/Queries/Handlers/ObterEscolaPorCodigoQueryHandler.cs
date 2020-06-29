@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace MEO.Application.Queries.Handlers
 {
-    public class ObterEscolaPorIdQueryHandler : IRequestHandler<ObterEscolaPorIdQuery, EscolaDTO>
+    public class ObterEscolaPorCodigoQueryHandler : IRequestHandler<ObterEscolaPorCodigoQuery, EscolaDTO>
     {
         private readonly IEscolaRepository _escolaRepository;
 
-        public ObterEscolaPorIdQueryHandler(IEscolaRepository escolaRepository)
+        public ObterEscolaPorCodigoQueryHandler(IEscolaRepository escolaRepository)
         {
             _escolaRepository = escolaRepository;
         }
 
-        public async Task<EscolaDTO> Handle(ObterEscolaPorIdQuery request, CancellationToken cancellationToken)
+        public async Task<EscolaDTO> Handle(ObterEscolaPorCodigoQuery request, CancellationToken cancellationToken)
         {
             if (!request.IsValid())
             {
                 throw new DomainException("Request inválido");
             }
 
-            var escola = await _escolaRepository.ObterEscolaPorIdAsync(request.Id, true);
-
+            var escola = await _escolaRepository.ObterEscolaPorCodigoAsync(request.Codigo, true);
 
             return EscolaDTOMapper.Map(escola);
         }

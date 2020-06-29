@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EscolasComponent } from './escolas.component';
 import { CriarEscolaComponent } from './criar-escola/criar-escola.component';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'criar-escola',
     component: CriarEscolaComponent
+  },
+  {
+    path: 'detalhes',
+    component: DetalhesComponent
   }
 ];
 
@@ -20,6 +25,6 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class EscolasRoutingModule {
-  static components = [EscolasComponent,CriarEscolaComponent];
+  static components = [EscolasComponent,CriarEscolaComponent, DetalhesComponent];
 }
 

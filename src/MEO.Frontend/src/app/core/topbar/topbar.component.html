@@ -1,5 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-dark color-teste ">
+<nav class="navbar navbar-expand-lg  bg-white border-bottom shadow-sm">
   <a class="navbar-brand" [routerLink]="'/home'">
-    Minha escola online
+    Minha Escola - Online
   </a>
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    &#9776;
+  </button>
+
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-end">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/home'" (click)="isMenuCollapsed = true">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/escolas'" (click)="isMenuCollapsed = true">Escolas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/escolas/criar-escola'" (click)="isMenuCollapsed = true">Criar Escolas</a>
+      </li>
+
+    </ul>
+  </div>
 </nav>

@@ -1,0 +1,125 @@
+<div class="card" *ngIf="escola && !criandoTurma">
+  <div class="card-body">
+    <h5 class="card-title">Dados Escola</h5>
+    <div class="row">
+      <div class="col-12 col-md-3 my-2">
+        <p class="h6">Nome</p>
+        <span>{{ escola.nome }}</span>
+      </div>
+      <div class="col-12 col-md-3 my-2">
+        <p class="h6">Código</p>
+        <span>{{ escola.codigo }}</span>
+      </div>
+      <div class="col-12 col-md-6 my-2">
+        <p class="h6">Endereço</p>
+        <span>{{ escola.endereco.enderecoCompleto }}</span>
+      </div>
+      <div class="col-12 col-md-3 my-2">
+        <p class="h6">Tipo localização</p>
+        <span>{{ escola.endereco.tipoLocalizacao.descricao }}</span>
+      </div>
+      <div class="col-12 col-md-3 my-2">
+        <p class="h6">Telefone</p>
+        <span>{{ escola.contato.telefone }}</span>
+      </div>
+      <div class="col-12 col-md-3 my-2">
+        <p class="h6">Email</p>
+        <span>{{ escola.contato.email }}</span>
+      </div>
+      <div class="col-12 col-md-3 my-2">
+        <p class="h6">Site</p>
+        <span>{{ escola.contato.site }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card my-2" *ngIf="escola && !criandoTurma">
+  <div class="card-body">
+    <div class="turmas-title-container">
+      <h5 class="card-title">Turmas</h5>
+      <button class="btn btn-primary" (click)="exibirTelaCriarTurma()" >
+          Adicionar
+        </button>
+    </div>
+    <div class="row d-none d-md-flex my-2">
+      <div class="col-3 h6">
+        Código
+      </div>
+      <div class="col-3 h6">
+        Turno
+      </div>
+      <div class="col-3 h6">
+        Quantidade de alunos
+      </div>
+    </div>
+    <div class="row my-2 py-2 border-bottom" *ngFor="let turma of escola.turmas">
+      <div class="col-12 col-md-3">
+        <span class="h6 d-md-none d-flex">Código: </span>
+        <span>{{turma.codigo}}</span>
+      </div>
+      <div class="col-12 col-md-3">
+        <span class="h6 d-md-none d-flex">Descricao: </span>
+        <span>{{turma.tipoTurno.descricao}}</span>
+      </div>
+      <div class="col-12 col-md-3">
+        <span class="h6 d-md-none d-flex">Quantidade de alunos: </span>
+        <span> {{turma.quantidadeAlunos}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngb-alert type="warning" class="my-3" *ngIf="criandoTurma && possuiNotificacoes" (close)="fecharAlerta()">
+    {{ notificacao ? notificacao : 'Ocorreu um erro inesperado no sistema. Tente novamente mais tarde'  }}
+  </ngb-alert>
+
+<form [formGroup]="formTurma" (ngSubmit)="submit(formTurma)" *ngIf="criandoTurma">
+    <div class="form-row">
+      <div class="form-group col-12 col-md-4">
+        <label for="codigo">Codigo</label>
+        <input type="text" 
+        [class.is-invalid]="campoPossuiErro('codigo')"
+        class="form-control" id="codigo" name="codigo" formControlName="codigo" required />
+        <div class="invalid-feedback">
+          Campo obrigatório
+        </div>
+      </div>
+
+      <div class="form-group col-12 col-md-4">
+        <label for="tipoLocalizacaoId">Turno</label>
+          <select class="form-control" id="tipoTurnoId" name="tipoTurnoId" 
+          [class.is-invalid]="campoPossuiErro('tipoTurnoId')"
+          formControlName="tipoTurnoId" required>
+            <option *ngFor="let tipoTurno of tiposTurnos" [ngValue]="tipoTurno.id">
+              {{tipoTurno.descricao}}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            Campo obrigatório
+          </div>
+        </div>
+      <div class="form-group col-12 col-md-4">
+        <label for="telefone">Quantidade de Alunos</label>
+        <input type="number" class="form-control" id="quantidadeAlunos" name="quantidadeAlunos"
+        [class.is-invalid]="campoPossuiErro('quantidadeAlunos')"formControlName="quantidadeAlunos" required />
+        <div class="invalid-feedback">
+          Campo obrigatório
+        </div>
+      </div>
+
+      <div class="form-group col-12 col-md-3 offset-md-6">
+        <button type="submit" class="btn btn-secondary w-100" (click)="voltar()">
+            Voltar
+        </button>
+      </div>
+
+      <div class="form-group col-12 col-md-3">
+        <button type="submit" class="btn btn-primary w-100" >
+            Salvar
+        </button>
+      </div>
+    </div>
+  
+  
+  </form>
+  

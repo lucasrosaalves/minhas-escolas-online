@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MEO.Application.DTOs;
+using MEO.Application.Mappers;
 using MEO.Common.Extensions;
 using MEO.Domain.DomainObjects;
 using MEO.Domain.Enums;

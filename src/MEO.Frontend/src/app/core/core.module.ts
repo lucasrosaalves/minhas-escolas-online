@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './loading/loading.component';
 import { UiService } from './services/ui.service';
+import { RouterService } from './services/router.service';
 
 @NgModule({
   declarations: [TopbarComponent, FooterComponent, LoadingComponent],
@@ -26,7 +27,8 @@ import { UiService } from './services/ui.service';
 ],
   providers: [
     EscolaService,
-    UiService
+    UiService,
+    RouterService
   ]
 })
 export class CoreModule { }

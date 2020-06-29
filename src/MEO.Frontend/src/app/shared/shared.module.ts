@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -8,12 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ],
     imports: [
         CommonModule,
-        NgbModule
+        NgbModule,
+        ReactiveFormsModule
     ],
     exports: [
         CommonModule,
         FormsModule,
-        NgbModule
+        NgbModule,
+        ReactiveFormsModule,
     ]
 })
 export class SharedModule { }

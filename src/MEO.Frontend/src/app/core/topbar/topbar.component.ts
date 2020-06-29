@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent implements OnInit {
+  isMenuCollapsed = true;
   constructor() { }
 
   ngOnInit(): void {

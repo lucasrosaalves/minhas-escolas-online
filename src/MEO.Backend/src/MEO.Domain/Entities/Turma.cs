@@ -8,8 +8,6 @@ namespace MEO.Domain.Entities
 {
     public class Turma : Entity
     {
-
-
         public string Codigo { get; private set; }
         public int TipoTurnoId { get; private set; }
         public int QuantidadeAlunos { get; private set; }
