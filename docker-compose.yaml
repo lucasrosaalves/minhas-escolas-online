@@ -1,5 +1,27 @@
-version: "3"
+version: '3'
 services:
+  meofrontend:
+    build:
+      context: ./src/MEO.Frontend
+      dockerfile: Dockerfile
+    container_name: "meofrontend"
+    depends_on:
+      - meobackend
+    ports:
+      - "4200:80"
+    networks:
+      - meo-network
+  meobackend:
+    build:
+      context: ./src/MEO.Backend
+      dockerfile: Dockerfile
+    container_name: "meobackend"
+    ports:
+      - "5000:80"
+    depends_on:
+      - sqlserver    
+    networks:
+      - meo-network
   sqlserver:
     container_name: sqlserver
     image: mcr.microsoft.com/mssql/server:2017-latest
@@ -8,4 +30,8 @@ services:
     environment:
       SA_PASSWORD: "1q2w3e4r@#"
       ACCEPT_EULA: "Y"
-
+    networks:
+      - meo-network
+networks:
+  meo-network:
+    driver: bridge   
