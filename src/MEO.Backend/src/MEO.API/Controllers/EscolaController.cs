@@ -19,31 +19,41 @@ namespace MEO.API.Controllers
 
         [HttpGet("obterescolaspaginadas")]
         public Task<IActionResult> ObterEscolasPaginadas([FromQuery] ObterEscolasPaginadasQuery query)
-            => QueryAsync<ObterEscolasPaginadasQuery, List<EscolaDTO>>(query);
+        {
+            return QueryAsync<ObterEscolasPaginadasQuery, List<EscolaDTO>>(query);
+        }
 
         [HttpGet("obterescolaporid")]
         public Task<IActionResult> ObterEscolaPorId([FromQuery] ObterEscolaPorIdQuery query)
-            => QueryAsync<ObterEscolaPorIdQuery, EscolaDTO>(query);
+        { 
+            return QueryAsync<ObterEscolaPorIdQuery, EscolaDTO>(query); 
+        }
 
         [HttpGet("obterescolaporcodigo")]
         public Task<IActionResult> ObterEscolaPorId([FromQuery] ObterEscolaPorCodigoQuery query)
-            => QueryAsync<ObterEscolaPorCodigoQuery, EscolaDTO>(query);
+        {           
+            return QueryAsync<ObterEscolaPorCodigoQuery, EscolaDTO>(query);
 
+        }
         #endregion
 
         #region Escrita
 
         [HttpPost("criarescola")]
         public Task<IActionResult> CriarEscola([FromBody] CriarEscolaCommand command)
-            => SendAsync(command);
-
+        {
+            return SendAsync(command);
+        }
+            
         [HttpPost("criarturma")]
         public Task<IActionResult> CriarTurma([FromBody] CriarTurmaCommand command)
-            => SendAsync(command);
+        {
+            return SendAsync(command);
+        }
+
 
         #endregion
 
 
     }
 }
-    

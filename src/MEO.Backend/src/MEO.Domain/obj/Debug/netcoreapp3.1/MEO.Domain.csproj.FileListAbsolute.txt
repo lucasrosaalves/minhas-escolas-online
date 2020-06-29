@@ -1,8 +1,0 @@
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.AssemblyInfoInputs.cache
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.AssemblyInfo.cs
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\bin\Debug\netcoreapp3.1\MEO.Domain.deps.json
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\bin\Debug\netcoreapp3.1\MEO.Domain.dll
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\bin\Debug\netcoreapp3.1\MEO.Domain.pdb
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.dll
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.pdb
-C:\Projetos\Pessoal\minhas-escolas-online\src\MEO.Backend\src\MEO.Domain\obj\Debug\netcoreapp3.1\MEO.Domain.csprojAssemblyReference.cache

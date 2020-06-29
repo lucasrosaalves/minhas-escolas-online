@@ -83,10 +83,5 @@ namespace MEO.API.Controllers
         {
             Erros.Add(erro);
         }
-
-        private void LimparErrosProcessamento()
-        {
-            Erros.Clear();
-        }
     }
 }
